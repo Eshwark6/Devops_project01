@@ -1,0 +1,18 @@
+---
+- hosts: Jenkins-Slave
+  become: true
+  tasks: 
+  - name: Update apt cache and repositories
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+  
+  - name: Install Java
+    apt:
+      name: openjdk-21-jdk
+      state: present  
+
+  - name: Install Maven
+    apt:
+      name: maven
+      state: present
