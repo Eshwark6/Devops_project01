@@ -12,7 +12,13 @@
       name: openjdk-21-jdk
       state: present  
 
-  - name: Install Maven
-    apt:
-      name: maven
-      state: present
+  - name: Download Maven JAR
+    get_url:
+      url: https://downloads.apache.org/maven/maven-4/4.0.0-alpha-10/binaries/apache-maven-4.0.0-alpha-10-bin.tar.gz
+      dest: /opt
+
+  - name: Extract Maven
+    unarchive:
+      src: /opt/apache-maven-4.0.0-alpha-10-bin.tar.gz
+      dest: /opt
+      remote_src: yes
